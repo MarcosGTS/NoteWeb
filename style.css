@@ -1,0 +1,55 @@
+body{
+    margin: 0;
+}
+
+main {
+    background-color: aqua;
+    display: flex;
+    height: 80vh;
+}
+
+#notesList {
+    width: 20vw;
+    height: 80vh;
+    background-color: aliceblue;
+}
+
+#noteBody {
+    width: 80vw; 
+}
+
+#buttons {
+    display:flex;
+    background-color: rgb(96, 134, 134);
+    height: 15%;
+}
+
+#list {
+    height: 85%;
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.note {
+    margin: 0px;
+    height: 5%;
+    background-color: red;
+    font-size: 10px;
+}
+
+textarea {
+    resize: none;
+    height: 100%;
+    width: 100%;
+    background-color: burlywood;
+    border: none;
+    font-size: 200%;
+    margin: 0;
+    padding: 0;
+}
+
+textarea:focus{
+    outline: none;
+}
