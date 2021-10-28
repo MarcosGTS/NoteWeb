@@ -1,10 +1,3 @@
-// let notes = [
-//     {
-//         id: 0,
-//         title: "test",
-//         text: "Place Holder"
-//     }
-// ]
 let notes = JSON.parse(localStorage.getItem("notes")) || []
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -71,10 +64,15 @@ function renderList (parent) {
         newNode = setUpButton(newNode, note)
         parent.appendChild(newNode)
     })
+
+    selectButton()
 }
 
 function setUpButton (button, note) {
-    let textArea = document.querySelector("textarea")
+    const textArea = document.querySelector("textarea")
+    const noteBody = document.querySelector("#noteBody")
+    const title = document.querySelector("#title") 
+
     button.id = note.id;
     button.innerText = note.title
 
@@ -82,9 +80,24 @@ function setUpButton (button, note) {
         let note = notes.find(note => note.id == button.id)
         textArea.value = note.text
         textArea.name = note.id
-        textArea.removeAttribute("hidden")
+        title.innerText = note.title
+        noteBody.removeAttribute("hidden")
     })
 
     return button
 }
 
+function selectButton () {
+    let buttons = document.querySelectorAll("#list button")
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            buttons.forEach(btn => {
+                btn.className = ""
+            })
+    
+            button.className = "selected"
+        })
+    }) 
+    console.log(buttons)
+}
