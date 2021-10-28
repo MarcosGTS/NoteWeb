@@ -1,20 +1,24 @@
-let notes = [
-    {
-        id: 0,
-        title: "test",
-        text: "Place Holder"
-    }
-]
+// let notes = [
+//     {
+//         id: 0,
+//         title: "test",
+//         text: "Place Holder"
+//     }
+// ]
+let notes = JSON.parse(localStorage.getItem("notes")) || []
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    
+    
     //RESTAURACAO DOS DADOS ANTERIORES
     const notesList = document.querySelector("#list")
+    const textArea = document.querySelector("textarea")
     renderList(notesList)
 
     const addButton = document.querySelector("#add")
     const removeButton = document.querySelector("#remove")
-    const textArea = document.querySelector("textarea")
+    const saveButton = document.querySelector("#save")
+    
     
     //MODIFICA E SALVA AS ANOTACOES
     textArea.addEventListener('keyup', () => {
@@ -52,6 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         renderList(notesList)
     })
+
+    //SALVAR ALTERACOES
+    saveButton.addEventListener("click", () => {
+        localStorage.setItem("notes",JSON.stringify(notes))
+    })
     
 })
 
@@ -73,6 +82,7 @@ function setUpButton (button, note) {
         let note = notes.find(note => note.id == button.id)
         textArea.value = note.text
         textArea.name = note.id
+        textArea.removeAttribute("hidden")
     })
 
     return button
